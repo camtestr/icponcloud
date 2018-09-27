@@ -1,0 +1,114 @@
+{
+  "service": {
+    "specVersion": "v3",
+    "catalog_metadata": {
+      "name": "Copy of DeployICP 2",
+      "description": "",
+      "image": "serviceicon_1.svg",
+      "category": "CloudServices",
+      "bullets": [
+        {
+          "title": "Cloud Provider",
+          "description": "IBM Bluemix Platform"
+        }
+      ],
+      "providerDisplayName": "IBM",
+      "longDescription": "",
+      "documentationUrl": "",
+      "supportUrl": "",
+      "bindable": "",
+      "updatable": "",
+      "author": "admin"
+    },
+    "tags": [],
+    "actions": [
+      {
+        "type": "provision",
+        "name": "provision",
+        "configuration": {
+          "onError": "pause"
+        },
+        "input_parameters": [],
+        "flow": {
+          "conditions": [],
+          "templates": [
+            {
+              "Single Node Deployment of IBM Cloud Private": {
+                "title": "Single Node Deployment of IBM Cloud Private_d2864d",
+                "template_name": "IBM Cloud Private Single Node Installation",
+                "version": "2.2",
+                "id": "singlenoa74f473c",
+                "template_type": "Terraform",
+                "template_content_type": "VMware vSphere",
+                "template_provider": "VMware vSphere",
+                "instance_name": "",
+                "cloud_connection_name": "VMware",
+                "template_data_objects": {
+                  "bastionhost": "DefaultNoBastionHostRequired"
+                },
+                "template_params": {
+                  "download_user": "",
+                  "download_user_password": "",
+                  "docker_binary_url": "http://172.168.10.5:90/ICP31/icp-docker-18.03.1_x86_64.bin",
+                  "enable_kibana": "false",
+                  "enable_metering": "true",
+                  "icp_binary_url": "http://172.168.10.5:90/ICP31/ibm-cloud-private-x86_64-3.1.0.tar.gz",
+                  "icp_cluster_name": "cluster01",
+                  "icp_admin_user": "admin",
+                  "icp_admin_password": "^(YWRtaW4=)",
+                  "icp_version": "2.1.0.3",
+                  "kub_version": "1.10.0",
+                  "singlenode_hostname_ip": {
+                    "Enter Hostname": "0.0.0.0"
+                  },
+                  "singlenode_memory": "16384",
+                  "singlenode_vcpu": "8",
+                  "singlenode_vm_ipv4_gateway": "192.168.10.1",
+                  "singlenode_vm_ipv4_prefix_length": "26",
+                  "singlenode_vm_disk1_datastore": "icponcloud",
+                  "singlenode_vm_template": "/cam/ubuntu192_withicp",
+                  "singlenode_vm_os_user": "root",
+                  "singlenode_vm_os_password": "^(aWNwb25jbG91ZA==)",
+                  "singlenode_vm_disk1_size": "400",
+                  "vm_domain": "icponcloud.com",
+                  "vm_dns_servers": [
+                    "10.188.158.32"
+                  ],
+                  "vm_dns_suffixes": [
+                    "icponcloud.com"
+                  ],
+                  "vsphere_datacenter": "datacenter1",
+                  "vsphere_resource_pool": "icponcloud",
+                  "vm_network_interface_label": "vxw-dvs-17-virtualwire-3-sid-6002-Workload",
+                  "vm_folder": "icponcloud"
+                },
+                "outputs": [
+                  "ibm_cloud_private_master_ip",
+                  "ibm_cloud_private_admin_url",
+                  "ibm_cloud_private_admin_user",
+                  "ibm_cloud_private_admin_password"
+                ]
+              }
+            }
+          ],
+          "resthooks": [],
+          "notifications": [],
+          "sequence": {
+            "0": "singlenoa74f473c"
+          },
+          "error_sequence": {},
+          "abort_sequence": {}
+        },
+        "output_parameters": []
+      }
+    ],
+    "plans": [
+      {
+        "name": "Standard",
+        "description": "To deploy a Standard plan",
+        "actions": [],
+        "plan_parameters": []
+      }
+    ]
+  }
+}

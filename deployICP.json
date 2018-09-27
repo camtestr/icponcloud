@@ -2,7 +2,7 @@
   "service": {
     "specVersion": "v3",
     "catalog_metadata": {
-      "name": "Copy of DeployICP 2",
+      "name": "DeployICP",
       "description": "",
       "image": "serviceicon_1.svg",
       "category": "CloudServices",

@@ -1,0 +1,627 @@
+{
+  "service": {
+    "specVersion": "v3",
+    "catalog_metadata": {
+      "name": "ICP Dev and Test Deployment Topology",
+      "description": "ICP Dev and Test Deployment Topology",
+      "image": "serviceicon_1.svg",
+      "category": "CloudServices",
+      "bullets": [
+        {
+          "title": "ICP HA",
+          "description": "ICP HA node deployment with 1 boot , 1 Proxy , 3 master , 1 va and 1 worker node "
+        }
+      ],
+      "providerDisplayName": "IBM",
+      "longDescription": "",
+      "documentationUrl": "",
+      "supportUrl": "",
+      "bindable": false,
+      "updatable": "",
+      "author": "admin"
+    },
+    "tags": [],
+    "actions": [
+      {
+        "type": "provision",
+        "name": "Provision",
+        "description": "Default action for deployment of service",
+        "input_parameters": [
+          {
+            "name": "boot_hostname_ip",
+            "label": "boot_hostname_ip",
+            "customtype": "map",
+            "type": "map",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "boot_hostname_ip",
+            "default": {
+              "icponboot01": "192.168.10.11"
+            }
+          },
+          {
+            "name": "boot_vm_ipv4_gateway",
+            "label": "boot_vm_ipv4_gateway",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "boot_vm_ipv4_gateway",
+            "default": "192.168.10.1"
+          },
+          {
+            "name": "boot_vm_ipv4_prefix_length",
+            "label": "boot_vm_ipv4_prefix_length",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "boot_vm_ipv4_prefix_length",
+            "default": "24"
+          },
+          {
+            "name": "docker_binary_url",
+            "label": "docker_binary_url",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "docker_binary_url",
+            "default": "http://192.168.10.5:9999/ICP2103/icp-docker-17.12.1_x86_64.bin"
+          },
+          {
+            "name": "enable_kibana",
+            "label": "enable_kibana",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "enable_kibana",
+            "options": [
+              {
+                "label": "true",
+                "value": "true",
+                "default": false
+              },
+              {
+                "label": "false",
+                "value": "false",
+                "default": false
+              }
+            ]
+          },
+          {
+            "name": "enable_metering",
+            "label": "enable_metering",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "enable_metering",
+            "options": [
+              {
+                "label": "true",
+                "value": "true",
+                "default": false
+              },
+              {
+                "label": "false",
+                "value": "false",
+                "default": true
+              }
+            ]
+          },
+          {
+            "name": "worker_enable_glusterFS",
+            "label": "worker_enable_glusterFS",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "worker_enable_glusterFS",
+            "options": [
+              {
+                "label": "true",
+                "value": "true",
+                "default": true
+              },
+              {
+                "label": "false",
+                "value": "false",
+                "default": false
+              }
+            ]
+          },
+          {
+            "name": "icp_cluster_name",
+            "label": "icp_cluster_name",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "icp_cluster_name",
+            "default": "cluster"
+          },
+          {
+            "name": "vm_folder",
+            "label": "vm_folder",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vm_folder",
+            "default": "cam"
+          },
+          {
+            "name": "vm_network_interface_label",
+            "label": "vm_network_interface_label",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vm_network_interface_label",
+            "default": "vxw-dvs-17-virtualwire-3-sid-6002-Workload"
+          },
+          {
+            "name": "vsphere_resource_pool",
+            "label": "vsphere_resource_pool",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vsphere_resource_pool",
+            "default": "ICPOnCloud"
+          },
+          {
+            "name": "vsphere_datacenter",
+            "label": "vsphere_datacenter",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vsphere_datacenter",
+            "default": "datacenter1"
+          },
+          {
+            "name": "vm_os_password",
+            "label": "vm_os_password",
+            "customtype": "password",
+            "type": "password",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vm_os_password",
+            "default": "^(aWNwb25jbG91ZA==)"
+          },
+          {
+            "name": "cluster_vip",
+            "label": "cluster_vip",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "cluster_vip",
+            "default": "192.168.10.12"
+          },
+          {
+            "name": "cluster_vip_iface",
+            "label": "cluster_vip_iface",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "cluster_vip_iface",
+            "default": "ens160"
+          },
+          {
+            "name": "proxy_vip",
+            "label": "proxy_vip",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "proxy_vip",
+            "default": "192.168.10.13"
+          },
+          {
+            "name": "proxy_vip_iface",
+            "label": "proxy_vip_iface",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "proxy_vip_iface",
+            "default": "ens160"
+          },
+          {
+            "name": "icp_binary_url",
+            "label": "icp_binary_url",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "icp_binary_url",
+            "default": "http://192.168.10.5:9999/ICP2103/ibm-cloud-private-x86_64-2.1.0.3.tar.gz"
+          },
+          {
+            "name": "manage_hostname_ip",
+            "label": "manage_hostname_ip",
+            "customtype": "map",
+            "type": "map",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "manage_hostname_ip",
+            "default": {
+              "managehost01": "192.168.10.14"
+            }
+          },
+          {
+            "name": "master_hostname_ip",
+            "label": "master_hostname_ip",
+            "customtype": "map",
+            "type": "map",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "master_hostname_ip",
+            "default": {
+              "mastericponcloud01": "192.168.10.15",
+              "mastericponcloud02": "192.168.10.16",
+              "mastericponcloud03": "192.168.10.17"
+            }
+          },
+          {
+            "name": "va_hostname_ip",
+            "label": "va_hostname_ip",
+            "customtype": "map",
+            "type": "map",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "va_hostname_ip",
+            "default": {
+              "vaicponcloud01": "192.168.10.18"
+            }
+          },
+          {
+            "name": "vm_dns_servers",
+            "label": "vm_dns_servers",
+            "customtype": "list",
+            "type": "list",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vm_dns_servers",
+            "default": [
+              "10.188.158.32"
+            ]
+          },
+          {
+            "name": "vm_dns_suffixes",
+            "label": "vm_dns_suffixes",
+            "customtype": "list",
+            "type": "list",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vm_dns_suffixes",
+            "default": [
+              "icponcloud.com"
+            ]
+          },
+          {
+            "name": "vm_domain",
+            "label": "vm_domain",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vm_domain",
+            "default": "icponcloud.com"
+          },
+          {
+            "name": "datastore",
+            "label": "datastore",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "datastore",
+            "default": "icponcloud"
+          },
+          {
+            "name": "vm_template",
+            "label": "vm_template",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "vm_template",
+            "default": "cam/ICPOnCloudUbuntu1604"
+          },
+          {
+            "name": "worker_hostname_ip",
+            "label": "worker_hostname_ip",
+            "customtype": "map",
+            "type": "map",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "worker_hostname_ip",
+            "default": {
+              "workericponcloud01": "192.168.10.20",
+              "workericponcloud02": "192.168.10.21",
+              "workericponcloud03": "192.168.10.22",
+              "workericponcloud04": "192.168.10.23",
+              "workericponcloud05": "192.168.10.24",
+              "workericponcloud06": "192.168.10.25"
+            }
+          },
+          {
+            "name": "proxy_hostname_ip",
+            "label": "proxy_hostname_ip",
+            "customtype": "map",
+            "type": "map",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "proxy_hostname_ip",
+            "default": {
+              "icponcloudproxy01": "192.168.10.19"
+            }
+          },
+          {
+            "name": "glusterfs_worker_hostname_ip",
+            "label": "glusterfs_worker_hostname_ip",
+            "customtype": "map",
+            "type": "map",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "glusterfs worker_hostname_ip",
+            "default": {
+              "gfs01": "192.168.10.26",
+              "gfs02": "192.168.10.27",
+              "gfs03": "192.168.10.28"
+            }
+          },
+          {
+            "name": "icp_admin_password",
+            "label": "icp_admin_password",
+            "customtype": "password",
+            "type": "password",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "icp_admin_password",
+            "default": "^(YWRtaW4=)"
+          }
+        ],
+        "flow": {
+          "conditions": [],
+          "templates": [
+            {
+              "HA Node Deployment of IBM Cloud Private": {
+                "title": "HA Node Deployment of IBM Cloud Private_6109b4",
+                "template_name": "IBM Cloud Private HA Node Installation",
+                "version": "2.2",
+                "id": "hanodede57f37e08",
+                "template_type": "Terraform",
+                "template_content_type": "VMware vSphere",
+                "template_provider": "VMware vSphere",
+                "instance_name": "",
+                "cloud_connection_name": "VMware",
+                "template_data_objects": {
+                  "bastionhost": "DefaultNoBastionHostRequired"
+                },
+                "template_params": {
+                  "boot_hostname_ip": "${input_parameters.boot_hostname_ip}",
+                  "boot_memory": "16384",
+                  "boot_vcpu": "8",
+                  "boot_vm_disk1_size": "100",
+                  "boot_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
+                  "boot_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}",
+                  "download_user": "",
+                  "download_user_password": "",
+                  "docker_binary_url": "${input_parameters.docker_binary_url}",
+                  "enable_kibana": "${input_parameters.enable_kibana}",
+                  "enable_metering": "${input_parameters.enable_metering}",
+                  "worker_enable_glusterFS": "${input_parameters.worker_enable_glusterFS}",
+                  "icp_cluster_name": "${input_parameters.icp_cluster_name}",
+                  "cluster_vip": "${input_parameters.cluster_vip}",
+                  "cluster_vip_iface": "${input_parameters.cluster_vip_iface}",
+                  "proxy_vip": "${input_parameters.proxy_vip}",
+                  "proxy_vip_iface": "${input_parameters.proxy_vip_iface}",
+                  "icp_admin_user": "admin",
+                  "icp_admin_password": "${input_parameters.icp_admin_password}",
+                  "icp_binary_url": "${input_parameters.icp_binary_url}",
+                  "icp_version": "2.1.0.3",
+                  "kub_version": "1.10.0",
+                  "enable_vm_management": "true",
+                  "manage_hostname_ip": "${input_parameters.manage_hostname_ip}",
+                  "manage_memory": "16384",
+                  "manage_vcpu": "8",
+                  "manage_vm_disk1_size": "150",
+                  "manage_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
+                  "manage_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}",
+                  "master_hostname_ip": "${input_parameters.master_hostname_ip}",
+                  "master_memory": "16384",
+                  "master_vcpu": "8",
+                  "master_vm_disk1_size": "200",
+                  "master_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
+                  "master_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}",
+                  "master_nfs_folders": [
+                    "/var/lib/registry",
+                    "/var/lib/icp/audit"
+                  ],
+                  "proxy_hostname_ip": "${input_parameters.proxy_hostname_ip}",
+                  "proxy_memory": "4096",
+                  "proxy_vcpu": "2",
+                  "proxy_vm_disk1_size": "150",
+                  "proxy_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
+                  "proxy_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}",
+                  "worker_hostname_ip": "${input_parameters.worker_hostname_ip}",
+                  "worker_memory": "8192",
+                  "worker_vcpu": "4",
+                  "worker_vm_disk1_size": "200",
+                  "worker_vm_disk2_size": "300",
+                  "worker_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
+                  "worker_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}",
+                  "enable_vm_va": "true",
+                  "va_hostname_ip": "${input_parameters.va_hostname_ip}",
+                  "va_memory": "16384",
+                  "va_vcpu": "8",
+                  "va_vm_disk1_size": "150",
+                  "va_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
+                  "va_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}",
+                  "vm_dns_servers": "${input_parameters.vm_dns_servers}",
+                  "vm_dns_suffixes": "${input_parameters.vm_dns_suffixes}",
+                  "vm_domain": "${input_parameters.vm_domain}",
+                  "vm_disk1_datastore": "${input_parameters.datastore}",
+                  "vm_disk2_datastore": "${input_parameters.datastore}",
+                  "vm_template": "${input_parameters.vm_template}",
+                  "vm_os_user": "root",
+                  "vm_os_password": "${input_parameters.vm_os_password}",
+                  "vsphere_datacenter": "${input_parameters.vsphere_datacenter}",
+                  "vsphere_resource_pool": "${input_parameters.vsphere_resource_pool}",
+                  "vm_network_interface_label": "${input_parameters.vm_network_interface_label}",
+                  "vm_folder": "${input_parameters.vm_folder}",
+                  "enable_nfs": "false",
+                  "nfs_server_hostname_ip": {
+                    "Enter Hostname": "0.0.0.0"
+                  },
+                  "nfs_server_memory": "8192",
+                  "nfs_server_vcpu": "8",
+                  "nfs_server_vm_disk1_size": "150",
+                  "nfs_server_vm_disk2_size": "200",
+                  "nfs_server_vm_ipv4_gateway": "",
+                  "nfs_server_vm_ipv4_prefix_length": "",
+                  "nfs_server_folder": "/var/nfs",
+                  "nfs_server_mount_point": "/mnt/nfs"
+                },
+                "outputs": [
+                  "ibm_cloud_private_master_ip",
+                  "ibm_cloud_private_admin_url",
+                  "ibm_cloud_private_admin_user",
+                  "ibm_cloud_private_admin_password"
+                ]
+              }
+            },
+            {
+              "IBM Cloud Private Node": {
+                "title": "Add Worker Node",
+                "template_name": "IBM Cloud Private Node",
+                "version": "1.0",
+                "id": "ibmcloudf518312e",
+                "template_type": "Terraform",
+                "template_content_type": "VMware vSphere",
+                "template_provider": "VMware vSphere",
+                "instance_name": "",
+                "cloud_connection_name": "VMware",
+                "template_data_objects": {
+                  "bastionhost": "DefaultNoBastionHostRequired"
+                },
+                "template_params": {
+                  "boot_vm_ipv4_address": "192.168.10.11",
+                  "master_vm_ipv4_address": "192.168.10.12",
+                  "icp_version": "2.1.0.3",
+                  "cluster_location": "/root/ibm-cloud-private-x86_64-2.1.0.3/cluster",
+                  "node_type": "worker",
+                  "vm_dns_servers": "${input_parameters.vm_dns_servers}",
+                  "vm_dns_suffixes": "${input_parameters.vm_dns_suffixes}",
+                  "vm_domain": "${input_parameters.vm_domain}",
+                  "vm_disk1_datastore": "${input_parameters.datastore}",
+                  "vm_disk2_datastore": "${input_parameters.datastore}",
+                  "vm_template": "${input_parameters.vm_template}",
+                  "vm_os_user": "root",
+                  "vm_os_password": "${input_parameters.vm_os_password}",
+                  "vsphere_datacenter": "${input_parameters.vsphere_datacenter}",
+                  "vsphere_resource_pool": "${input_parameters.vsphere_resource_pool}",
+                  "vm_network_interface_label": "${input_parameters.vm_network_interface_label}",
+                  "vm_folder": "${input_parameters.vm_folder}",
+                  "worker_hostname_ip": "${input_parameters.glusterfs_worker_hostname_ip}",
+                  "worker_memory": "16384",
+                  "worker_vcpu": "8",
+                  "worker_vm_disk1_size": "150",
+                  "worker_enable_glusterFS": "true",
+                  "worker_vm_disk2_size": "50",
+                  "worker_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
+                  "worker_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}"
+                },
+                "outputs": [
+                  "ibm_cloud_private_master_ip"
+                ]
+              }
+            }
+          ],
+          "resthooks": [],
+          "notifications": [],
+          "sequence": {
+            "0": "hanodede57f37e08",
+            "1": "ibmcloudf518312e"
+          }
+        },
+        "output_parameters": []
+      }
+    ],
+    "plans": [
+      {
+        "name": "Standard",
+        "description": "To deploy a Standard plan",
+        "actions": [],
+        "plan_parameters": []
+      }
+    ]
+  }
+}

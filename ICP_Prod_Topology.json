@@ -2,14 +2,14 @@
   "service": {
     "specVersion": "v3",
     "catalog_metadata": {
-      "name": "ICP Prod topology",
+      "name": "ICP_Prod_topology",
       "description": "ICP Prod topology",
       "image": "serviceicon_1.svg",
       "category": "CloudServices",
       "bullets": [
         {
           "title": "ICP HA",
-          "description": "ICP HA node deployment with 1 boot , 1 Proxy , 3 master , 1 va and 1 worker node "
+          "description": "ICP HA Production deployment with 1 boot, 3 Proxy, 3 masters, 3 management 14 Worker, 3 VA ,3 GlusterFS"
         }
       ],
       "providerDisplayName": "IBM",
@@ -87,6 +87,7 @@
             "required": true,
             "secured": false,
             "description": "enable_kibana",
+            "default": false,
             "options": [
               {
                 "label": "true",
@@ -110,6 +111,7 @@
             "required": true,
             "secured": false,
             "description": "enable_metering",
+            "default": false,
             "options": [
               {
                 "label": "true",
@@ -133,6 +135,7 @@
             "required": true,
             "secured": false,
             "description": "worker_enable_glusterFS",
+            "default": true,
             "options": [
               {
                 "label": "true",

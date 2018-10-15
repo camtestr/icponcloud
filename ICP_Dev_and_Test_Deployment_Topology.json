@@ -2,14 +2,14 @@
   "service": {
     "specVersion": "v3",
     "catalog_metadata": {
-      "name": "ICP Dev and Test Deployment Topology",
+      "name": "ICP_Dev_and_Test_Deployment_Topology",
       "description": "ICP Dev and Test Deployment Topology",
       "image": "serviceicon_1.svg",
       "category": "CloudServices",
       "bullets": [
         {
-          "title": "ICP HA",
-          "description": "ICP HA node deployment with 1 boot , 1 Proxy , 3 master , 1 va and 1 worker node "
+          "title": "ICP Dev and Test Deployment",
+          "description": "ICP Dev and Test Deployment with 1 boot, 1 Proxy, 3 masters, 1 VA, 6 workers, and 3 Glusters node s"
         }
       ],
       "providerDisplayName": "IBM",

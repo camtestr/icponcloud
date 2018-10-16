@@ -86,6 +86,7 @@
             "hidden": false,
             "required": true,
             "secured": false,
+            "default": false,
             "description": "enable_kibana",
             "options": [
               {
@@ -109,6 +110,7 @@
             "hidden": false,
             "required": true,
             "secured": false,
+            "default": false,
             "description": "enable_metering",
             "options": [
               {
@@ -132,6 +134,7 @@
             "hidden": false,
             "required": true,
             "secured": false,
+            "default": true,
             "description": "worker_enable_glusterFS",
             "options": [
               {
@@ -436,6 +439,18 @@
             }
           },
           {
+            "name": "icp_admin_user",
+            "label": "icp_admin_user",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "icp_admin_user",
+            "default": "admin"
+          },
+          {
             "name": "icp_admin_password",
             "label": "icp_admin_password",
             "customtype": "password",
@@ -483,7 +498,7 @@
                   "cluster_vip_iface": "${input_parameters.cluster_vip_iface}",
                   "proxy_vip": "${input_parameters.proxy_vip}",
                   "proxy_vip_iface": "${input_parameters.proxy_vip_iface}",
-                  "icp_admin_user": "admin",
+                  "icp_admin_user": "${input_parameters.icp_admin_user}",
                   "icp_admin_password": "${input_parameters.icp_admin_password}",
                   "icp_binary_url": "${input_parameters.icp_binary_url}",
                   "icp_version": "2.1.0.3",

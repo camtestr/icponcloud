@@ -75,7 +75,7 @@
             "required": true,
             "secured": false,
             "description": "docker_binary_url",
-            "default": "http://192.168.10.5:9999/ICP2103/icp-docker-17.12.1_x86_64.bin"
+            "default": "http://192.168.10.5:9999/ICP31/icp-docker-18.03.1_x86_64.bin"
           },
           {
             "name": "enable_kibana",
@@ -279,7 +279,7 @@
             "required": true,
             "secured": false,
             "description": "icp_binary_url",
-            "default": "http://192.168.10.5:9999/ICP2103/ibm-cloud-private-x86_64-2.1.0.3.tar.gz"
+            "default": "http://192.168.10.5:9999/ICP31/ibm-cloud-private-x86_64-3.1.0.tar.gz"
           },
           {
             "name": "manage_hostname_ip",
@@ -501,8 +501,8 @@
                   "icp_admin_user": "${input_parameters.icp_admin_user}",
                   "icp_admin_password": "${input_parameters.icp_admin_password}",
                   "icp_binary_url": "${input_parameters.icp_binary_url}",
-                  "icp_version": "2.1.0.3",
-                  "kub_version": "1.10.0",
+                  "icp_version": "3.1.0",
+                  "kub_version": "1.11.0",
                   "enable_vm_management": "true",
                   "manage_hostname_ip": "${input_parameters.manage_hostname_ip}",
                   "manage_memory": "16384",

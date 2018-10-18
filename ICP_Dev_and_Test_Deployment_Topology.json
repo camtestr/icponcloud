@@ -2,7 +2,7 @@
   "service": {
     "specVersion": "v3",
     "catalog_metadata": {
-      "name": "ICP_Dev_and_Test_Deployment_Topology_Updated",
+      "name": "ICP_Dev_and_Test_Deployment_Topology",
       "description": "ICP Dev and Test Deployment Topology",
       "image": "serviceicon_1.svg",
       "category": "CloudServices",

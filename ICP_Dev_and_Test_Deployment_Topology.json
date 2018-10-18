@@ -2,14 +2,14 @@
   "service": {
     "specVersion": "v3",
     "catalog_metadata": {
-      "name": "ICP_Dev_and_Test_Deployment_Topology",
+      "name": "ICP_Dev_and_Test_Deployment_Topology_Updated",
       "description": "ICP Dev and Test Deployment Topology",
       "image": "serviceicon_1.svg",
       "category": "CloudServices",
       "bullets": [
         {
           "title": "ICP Dev and Test Deployment",
-          "description": "ICP Dev and Test Deployment with 1 boot, 1 Proxy, 3 masters, 1 VA, 6 workers, and 3 Glusters node s"
+          "description": "ICP Dev and Test Deployment with 1 boot, 1 Proxy, 1 master, 1 VA, 3 workers, and 3 Glusters nodes"
         }
       ],
       "providerDisplayName": "IBM",
@@ -75,7 +75,7 @@
             "required": true,
             "secured": false,
             "description": "docker_binary_url",
-            "default": "http://192.168.10.5:9999/ICP31/icp-docker-18.03.1_x86_64.bin"
+            "default": "http://192.168.10.5:9999/ICP2103/icp-docker-17.12.1_x86_64.bin"
           },
           {
             "name": "enable_kibana",
@@ -86,8 +86,8 @@
             "hidden": false,
             "required": true,
             "secured": false,
-            "default": false,
             "description": "enable_kibana",
+            "default": false,
             "options": [
               {
                 "label": "true",
@@ -110,8 +110,8 @@
             "hidden": false,
             "required": true,
             "secured": false,
-            "default": false,
             "description": "enable_metering",
+            "default": false,
             "options": [
               {
                 "label": "true",
@@ -134,8 +134,8 @@
             "hidden": false,
             "required": true,
             "secured": false,
-            "default": true,
             "description": "worker_enable_glusterFS",
+            "default": true,
             "options": [
               {
                 "label": "true",
@@ -279,7 +279,7 @@
             "required": true,
             "secured": false,
             "description": "icp_binary_url",
-            "default": "http://192.168.10.5:9999/ICP31/ibm-cloud-private-x86_64-3.1.0.tar.gz"
+            "default": "http://192.168.10.5:9999/ICP2103/ibm-cloud-private-x86_64-2.1.0.3.tar.gz"
           },
           {
             "name": "manage_hostname_ip",
@@ -306,9 +306,7 @@
             "secured": false,
             "description": "master_hostname_ip",
             "default": {
-              "mastericponcloud01": "192.168.10.15",
-              "mastericponcloud02": "192.168.10.16",
-              "mastericponcloud03": "192.168.10.17"
+              "mastericponcloud01": "192.168.10.15"
             }
           },
           {
@@ -423,22 +421,6 @@
             }
           },
           {
-            "name": "glusterfs_worker_hostname_ip",
-            "label": "glusterfs_worker_hostname_ip",
-            "customtype": "map",
-            "type": "map",
-            "immutable": false,
-            "hidden": false,
-            "required": true,
-            "secured": false,
-            "description": "glusterfs worker_hostname_ip",
-            "default": {
-              "gfs01": "192.168.10.26",
-              "gfs02": "192.168.10.27",
-              "gfs03": "192.168.10.28"
-            }
-          },
-          {
             "name": "icp_admin_user",
             "label": "icp_admin_user",
             "customtype": "string",
@@ -527,8 +509,8 @@
                   "proxy_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
                   "proxy_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}",
                   "worker_hostname_ip": "${input_parameters.worker_hostname_ip}",
-                  "worker_memory": "8192",
-                  "worker_vcpu": "4",
+                  "worker_memory": "16384",
+                  "worker_vcpu": "8",
                   "worker_vm_disk1_size": "200",
                   "worker_vm_disk2_size": "300",
                   "worker_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
@@ -572,59 +554,12 @@
                   "ibm_cloud_private_admin_password"
                 ]
               }
-            },
-            {
-              "IBM Cloud Private Node": {
-                "title": "Add Worker Node",
-                "template_name": "IBM Cloud Private Node",
-                "version": "1.0",
-                "id": "ibmcloudf518312e",
-                "template_type": "Terraform",
-                "template_content_type": "VMware vSphere",
-                "template_provider": "VMware vSphere",
-                "instance_name": "",
-                "cloud_connection_name": "VMware",
-                "template_data_objects": {
-                  "bastionhost": "DefaultNoBastionHostRequired"
-                },
-                "template_params": {
-                  "boot_vm_ipv4_address": "192.168.10.11",
-                  "master_vm_ipv4_address": "192.168.10.12",
-                  "icp_version": "2.1.0.3",
-                  "cluster_location": "/root/ibm-cloud-private-x86_64-2.1.0.3/cluster",
-                  "node_type": "worker",
-                  "vm_dns_servers": "${input_parameters.vm_dns_servers}",
-                  "vm_dns_suffixes": "${input_parameters.vm_dns_suffixes}",
-                  "vm_domain": "${input_parameters.vm_domain}",
-                  "vm_disk1_datastore": "${input_parameters.datastore}",
-                  "vm_disk2_datastore": "${input_parameters.datastore}",
-                  "vm_template": "${input_parameters.vm_template}",
-                  "vm_os_user": "root",
-                  "vm_os_password": "${input_parameters.vm_os_password}",
-                  "vsphere_datacenter": "${input_parameters.vsphere_datacenter}",
-                  "vsphere_resource_pool": "${input_parameters.vsphere_resource_pool}",
-                  "vm_network_interface_label": "${input_parameters.vm_network_interface_label}",
-                  "vm_folder": "${input_parameters.vm_folder}",
-                  "worker_hostname_ip": "${input_parameters.glusterfs_worker_hostname_ip}",
-                  "worker_memory": "16384",
-                  "worker_vcpu": "8",
-                  "worker_vm_disk1_size": "150",
-                  "worker_enable_glusterFS": "true",
-                  "worker_vm_disk2_size": "50",
-                  "worker_vm_ipv4_gateway": "${input_parameters.boot_vm_ipv4_gateway}",
-                  "worker_vm_ipv4_prefix_length": "${input_parameters.boot_vm_ipv4_prefix_length}"
-                },
-                "outputs": [
-                  "ibm_cloud_private_master_ip"
-                ]
-              }
             }
           ],
           "resthooks": [],
           "notifications": [],
           "sequence": {
-            "0": "hanodede57f37e08",
-            "1": "ibmcloudf518312e"
+            "0": "hanodede57f37e08"
           }
         },
         "output_parameters": []
